@@ -43,7 +43,7 @@ class MobidelCallback
     public function subscribeToEvents($listener, $actions = [])
     {
         foreach ($actions as $action) {
-            if (!in_array($action, array_keys($this->availableEvents))) {
+            if (!in_array($action, array_values($this->availableEvents))) {
                 throw new Exception('Incorrect event action');
             }
             $this->dispatcher->addListener($action, [$listener, 'on' . ucfirst($action)]);
@@ -87,8 +87,8 @@ class MobidelCallback
             }
 
             if (md5($response['reqID'] . ":" . env('CRM_LOGIN') . ":" . env('CRM_PASSWORD')) !== $response['SignatureValue']) {
-//                $this->logger->warning('[MobidelCallback] - Auth has been failed');
-//                return false;
+                $this->logger->warning('[MobidelCallback] - Auth has been failed');
+                return false;
             }
 
             return $response;

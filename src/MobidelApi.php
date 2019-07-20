@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class MobidelApi
 {
+    private $apiUrl = 'http://online.mobidel.ru';
     private $client;
     private $user;
     private $password;
@@ -42,7 +43,7 @@ class MobidelApi
             if(cache()->has('mobidel_'.$orderId)){
                 $response = cache()->get('mobidel_'.$orderId);
             }else{
-                $res = $this->client->request('GET', trim(env('CRM_URL'), '/') . '/getOrder.php', [
+                $res = $this->client->request('GET', $this->apiUrl . '/getOrder.php', [
                     'query' => [
                         'user' => $this->user,
                         'password' => $this->password,

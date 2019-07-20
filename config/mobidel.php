@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'route_prefix' => env('MOBIDEL_ROUTE_PREFIX', 'mobidel/api'),
-    'route_path' => env('MOBIDEL_ROUTE_PATH', 'callback'),
+    'callback_path' => env('MOBIDEL_CALLBACK', 'mobidel/api'),
     // Api config
     'user' => env('MOBIDEL_USER'),
     'password' => env('MOBIDEL_PASSWORD'),

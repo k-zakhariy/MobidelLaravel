@@ -34,12 +34,10 @@ class MobidelServiceProvider extends EventServiceProvider
     public function boot()
     {
         $config = $this->app->make('config')->get('mobidel');
-        $this->app['router']->group(['prefix' => $config['route_prefix']], function ($router) use ($config) {
-            $router->post($config['route_path'], [
-                'as' => 'callback.index',
-                'uses' => 'Zakhariy\MobidelLaravel\Controllers\CallbackController@index'
-            ])->middleware('cors-middleware');
-        });
+        $this->app['router']->post($config['callback_path'], [
+            'as' => 'callback.index',
+            'uses' => 'Zakhariy\MobidelLaravel\Controllers\CallbackController@index'
+        ])->middleware('cors-middleware');
     }
 
 }
